@@ -1,14 +1,41 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
+st.title('Hr Dashboard')
+df = pd.read_csv('hr_data.csv')
+df.columns = df.columns.str.strip().str.replace(' ', '')
+df['DateJoined'] = pd.to_datetime(df['DateJoined'])
+df['DateLeft'] = pd.to_datetime(df['DateLeft'], errors='coerce')
+df['Status'] = df['DateLeft'].apply(lambda x: "Former" if pd.notnull(x) else 'Current')
+if st.checkbox('Show Raw Data'):
+    st.write(df)
+total_employees = len(df)
+current_employees = df['Status'].value_counts().get('Current', 0)
+former_employees = df['Status'].value_counts().get('Former', 0)
+
+col1, col2, col3 = st.columns(3)
+col1.metric('Total Employees', total_employees)
+col2.metric('Current Employees', current_employees)
+col3.metric('Former Employees', former_employees)
+avg_salary = df[df['Status'] == 'Current'].groupby('Department')['Salary'].mean().reset_index()
+
+fig, ax = plt.subplots()
+ax.bar(avg_salary['Department'], avg_salary['Salary'], color="skyblue")
+ax.set_title('Average Salary by Department')
+ax.set_xlabel('Department')
+ax.set_ylabel('Average Salary')
+plt.xticks(rotation=45)
+st.pyplot(fig)
 gender_counts = df[df["Status"] == 'Current']['Gender'].value_counts()
+
 male_count = gender_counts.get('Male', 0)
 female_count = gender_counts.get('Female', 0)
+
 col1, col2 = st.columns(2)
-col1.metric('Total Male Employees', male_count)
-col2.metric('Total Female Employees', female_count)
+col1.metric('Total Male Employees',male_count)
+col2.metric('Total Female Employees',female_count)
+
 fig2, ax2 = plt.subplots()
 ax2.pie(gender_counts, labels=gender_counts.index, autopct='%1.1f%%', colors=['lightblue', 'lightpink'])
 ax2.set_title('Gender Distribution (Current Employees)')
 st.pyplot(fig2)
-
