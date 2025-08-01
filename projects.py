@@ -1,0 +1,26 @@
+import pandas as pd
+
+df = pd.read_csv('sales_data.csv')
+'''
+print(df.head())
+print(df.info())
+print("\n missing values:\n",df.isnull().sum())
+print("\ndata types:\n",df.dtypes)
+print("\nsummary stats:\n",df.describe())
+df['Date'] = pd.to_datetime(df['Date'])
+print(df.dtypes)
+total_revenue = df['Total'].sum()
+total_units = df['Units'].sum()
+total_orders = df['OrderID'].nunique()
+revenue_by_region = df.groupby('Region')['Total'].sum()
+revenue_by_product = df.groupby('Product')['Total'].sum()
+print("Total Revenue:", total_revenue)
+print("Total Units Sold:", total_units)
+print("Total Orders:", total_orders)
+print("\n Revenue by Region\n:", revenue_by_region)
+print("\n Revenue by Product\n:", revenue_by_product)
+'''
+df['Date'] = pd.to_datetime(df['Date'])
+df['Month'] = df['Date'].dt.to_period('M')
+monthly_sales = df.groupby('Month')['Total'].sum()
+print(monthly_sales)

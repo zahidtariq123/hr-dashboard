@@ -1,0 +1,46 @@
+
+--------Student Details are--------------
+Date of registration = 2025-03-21 11:57:57.176286
+Name = sam
+Address = new york
+City = new jersey
+
+----------------
+
+--------Student Details are--------------
+Date of registration = 2025-03-21 11:58:42.243705
+Name = zahid
+Address = noshara
+City = srinagar
+
+----------------
+
+--------Student Details are--------------
+Date of registration = 2025-03-21 11:58:59.921968
+Name = irfan
+Address = khonmoh
+City = srinagar
+
+----------------
+/n-----------warrior details------------/ndate of registration = 2025-03-21 12:16:25.690186/nName = itachi/nprof = killer/nage = 300/n
+-----------warrior details------------
+date of registration = 2025-03-21 12:19:21.186870
+Name = itachi
+prof = killer
+age = 300
+
+---------------bank details-------------
+date of registration = 2025-03-21 12:34:15.581858
+bank name = hdfc
+account number = 13208e928283023019310
+address = morocco
+
+---------------bank details-------------
+
+---------------bank details-------------
+
+---------------bank details-------------
+date of registration = 2025-03-21 12:39:27.888837
+bank name = hdfc
+account number = 120930232310
+address = koopo

@@ -1,0 +1,52 @@
+'''
+print('Enter Name')
+name = input()
+print('Enter Address')
+add = input()
+print('Enter City')
+city = input()
+import datetime as dt
+current = dt.datetime.now()
+file = open('info.txt','a')
+file.write('\n--------Student Details are--------------\n')
+file.write(f'Date of registration = {current}\n')
+file.write(f'Name = {name}\n')
+file.write(f'Address = {add}\n')
+file.write(f'City = {city}\n')
+file.write('\n----------------\n')
+file.close()
+'''
+'''
+print('enter name')
+name = input()
+print('enter your profession')
+prof = input()
+print('enter age')
+age = int(input())
+import datetime as dt
+current = dt.datetime.now()
+file = open('info.txt','a')
+file.write(f'\n-----------warrior details------------\n')
+file.write(f'date of registration = {current}\n')
+file.write(f'Name = {name}\n')
+file.write(f'prof = {prof}\n')
+file.write(f'age = {age}\n')
+file.close()
+'''
+'''
+print('enter bank')
+bank = input()
+print('enter account number  ')
+acc = input()
+print('address')
+add = input()
+import datetime as dt
+current = dt.datetime.now()
+file = open('info.txt','a')
+file.write(f'\n---------------bank details-------------\n')
+file.write(f"date of registration = {current}\n")
+file.write(f'bank name = {bank}\n')
+file.write(f'account number = {acc}\n')
+file.write(f'address = {add}\n')
+file.close()
+'''
