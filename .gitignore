@@ -1,0 +1,15 @@
+# Ignore Python cache
+__pycache__/
+*.py[cod]
+
+# Ignore virtual environments
+.venv/
+env/
+venv/
+
+# Ignore PyCharm project files
+.idea/
+
+# Ignore CSV output or logs (optional)
+*.csv
+*.log
