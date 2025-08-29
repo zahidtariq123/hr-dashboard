@@ -16,13 +16,14 @@ st.markdown('____')
 
 @st.cache_data(show_spinner=True)
 def load_hr_data(
-        host: str='localhost',
+        host: str='127.0.0.1',
         user: str='root',
         password: str='',
-        database: str='hr_db'
+        database: str='hr_db',
+        port: int='3306'
 ) -> pd.DataFrame:
     "connect to MYSQL and return a tidy employees x departments dataframe."
-    conn = mysql.connector.connect(host=host, user=user, password=password, database=database)
+    conn = mysql.connector.connect(host=host, user=user, password=password, database=database,port=port)
     querry = """
     select
         e.id as employee_id,
