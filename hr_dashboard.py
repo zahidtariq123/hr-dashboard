@@ -1,4 +1,3 @@
-import mysql.connector
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -13,18 +12,17 @@ st.set_page_config(
 st.title('📊HR Performance Dashboard')
 st.markdown('Live dashboard reading from MYSQL: monitor, headcount, churn, salaries and trends.')
 st.markdown('____')
-
 @st.cache_data(show_spinner=True)
-def load_hr_data(
-        host: str='127.0.0.1',
-        user: str='root',
-        password: str='',
-        database: str='hr_db',
-        port: int='3306'
-) -> pd.DataFrame:
-    "connect to MYSQL and return a tidy employees x departments dataframe."
-    conn = mysql.connector.connect(host=host, user=user, password=password, database=database,port=port)
-    querry = """
+def load_hr_data() -> pd.DataFrame:
+    "connect to MYSQL using Streamlit secrets"
+    conn = mysql.connector.connect(
+        host=st.secrets["mysql"]["host"],
+        user=st.secrets["mysql"]["user"],
+        password=st.secrets["mysql"]["password"],
+        database=st.secrets["mysql"]["database"],
+        port=st.secrets["mysql"]["port"]
+    )
+    query = """
     select
         e.id as employee_id,
         e.name as employee_name,
@@ -36,8 +34,10 @@ def load_hr_data(
     from employees e
     left join departments d on d.id = e.dept_id;
     """
-    df = pd.read_sql_query(querry, conn)
+    df = pd.read_sql_query(query, conn)
     conn.close()
+
+    # clean
     df.columns = df.columns.str.strip()
     df['gender'] = df['gender'].astype(str).str.strip().str.lower()
     df['department'] = df['department'].astype(str).str.strip().str.title()
